@@ -17,4 +17,30 @@ export class NewProduct {
   });
 
   saveProduct() {}
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      this.convertFileToBase64(file);
+    }
+  }
+
+  convertFileToBase64(file: File) {
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      const imageBase64 = e.target?.result as string;
+
+      this.productImageBase64 = imageBase64;
+    };
+
+    reader.onerror = (_) => {
+      this.productImageBase64 = '';
+    };
+
+    reader.readAsDataURL(file);
+  }
 }
