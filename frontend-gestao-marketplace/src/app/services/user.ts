@@ -4,6 +4,7 @@ import { IAuthSuccessResponse } from '../interfaces/auth-success-response';
 import { Observable } from 'rxjs';
 import { ILoginSuccessResponse } from '../interfaces/login-success-response';
 import { IRegisterSuccessResponse } from '../interfaces/register-success-response';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class UserService {
   private readonly _httpClient = inject(HttpClient);
 
   validateUser(): Observable<IAuthSuccessResponse> {
-    return this._httpClient.get<IAuthSuccessResponse>('http://localhost:3000/api/protected');
+    return this._httpClient.get<IAuthSuccessResponse>(environment.apiUrl + '/protected');
   }
 
   login(email: string, password: string): Observable<ILoginSuccessResponse> {
@@ -21,10 +22,7 @@ export class UserService {
       password,
     };
 
-    return this._httpClient.post<ILoginSuccessResponse>(
-      'http://localhost:3000/api/users/login',
-      body,
-    );
+    return this._httpClient.post<ILoginSuccessResponse>(environment.apiUrl + '/users/login', body);
   }
 
   register(name: string, email: string, password: string): Observable<IRegisterSuccessResponse> {
@@ -35,7 +33,7 @@ export class UserService {
     };
 
     return this._httpClient.post<IRegisterSuccessResponse>(
-      'http://localhost:3000/api/users/register',
+      environment.apiUrl + '/users/register',
       body,
     );
   }
