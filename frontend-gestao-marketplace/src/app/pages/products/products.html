@@ -92,6 +92,30 @@
               </p>
             </div>
           </div>
+        } @empty {
+          <div
+            class="w-full bg-white rounded-2xl flex flex-col items-center justify-center gap-4 py-16 px-8"
+          >
+            <div class="bg-gray-100 rounded-full p-6">
+              <img class="w-10 h-10 opacity-60" src="box.svg" />
+            </div>
+
+            <div class="flex flex-col items-center gap-1">
+              <h3 class="font-bold text-gray-700">Nenhum produto encontrado</h3>
+              <p class="font-light text-xs text-gray-500 text-center max-w-xs">
+                Não encontramos produtos com os filtros aplicados. Tente ajustar sua busca ou
+                cadastre um novo produto.
+              </p>
+            </div>
+
+            <div
+              class="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#F24D0D] cursor-pointer active:translate-y-2 duration-200 ease-in-out transition"
+              routerLink="/new-product"
+            >
+              <span class="text-white text-sm">Cadastrar produto</span>
+              <img class="w-4 h-4" src="right-arrow.svg" />
+            </div>
+          </div>
         }
       </div>
     </div>
