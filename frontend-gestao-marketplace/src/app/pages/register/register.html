@@ -2,14 +2,14 @@
   <!-- Logo -->
   <div class="p-6">
     <div class="flex items-center">
-      <img class="w-24 h-24 mr-4" src="logo.svg" />
+      <img class="w-24 h-24 mr-4" src="logo.svg" alt="Logotipo Marketplace" />
       <div>
         <h2 class="font-bold">Marketplace</h2>
         <h4>Painel de Vendedor</h4>
       </div>
     </div>
 
-    <img src="login-background.svg" />
+    <img src="login-background.svg" alt="" aria-hidden="true" />
   </div>
 
   <!-- Container Formulário de Cadastro -->
@@ -23,12 +23,13 @@
     <div class="flex flex-col gap-10">
       <!-- Input de Nome -->
       <div class="flex flex-col gap-2 border-b border-gray-300 pb-2">
-        <span class="text-gray-600 text-xs">NOME</span>
+        <label class="text-gray-600 text-xs" for="input-name">NOME</label>
         <div class="flex">
-          <img class="mr-2 opacity-85 w-5 h-5" src="user.svg" />
+          <img class="mr-2 opacity-85 w-5 h-5" src="user.svg" alt="" aria-hidden="true" />
           <input
             class="text-gray-400 text-sm focus:outline-none"
             type="text"
+            id="input-name"
             placeholder="Seu nome completo"
             formControlName="name"
           />
@@ -36,12 +37,13 @@
       </div>
       <!-- Input de Email -->
       <div class="flex flex-col gap-2 border-b border-gray-300 pb-2">
-        <span class="text-gray-600 text-xs">E-MAIL</span>
+        <label class="text-gray-600 text-xs" for="input-email">E-MAIL</label>
         <div class="flex">
-          <img class="mr-2 opacity-85 w-5 h-5" src="mail.svg" />
+          <img class="mr-2 opacity-85 w-5 h-5" src="mail.svg" alt="" aria-hidden="true" />
           <input
             class="text-gray-400 text-sm focus:outline-none"
-            type="text"
+            type="email"
+            id="input-email"
             placeholder="Seu e-mail"
             formControlName="email"
           />
@@ -49,12 +51,13 @@
       </div>
       <!-- Input de Senha -->
       <div class="flex flex-col gap-2 border-b border-gray-300 pb-2">
-        <span class="text-gray-600 text-xs">SENHA</span>
+        <label class="text-gray-600 text-xs" for="input-password">SENHA</label>
         <div class="flex">
-          <img class="mr-2 opacity-85 w-5 h-5" src="access.svg" />
+          <img class="mr-2 opacity-85 w-5 h-5" src="access.svg" alt="" aria-hidden="true" />
           <input
             class="text-gray-400 text-sm focus:outline-none"
             type="password"
+            id="input-password"
             placeholder="Crie uma senha"
             formControlName="password"
           />
@@ -74,12 +77,12 @@
         </div>
 
         @if (userForm.get('confirmPassword')?.touched && userForm.hasError('passwordMismatch')) {
-          <p class="font-bold text-red-500 text-xs">As senhas não coincidem</p>
+          <p class="font-bold text-red-500 text-xs" role="alert">As senhas não coincidem</p>
         }
       </div>
 
       @if (registerErrorMessage) {
-        <p class="font-bold text-red-500">{{ registerErrorMessage }}</p>
+        <p class="font-bold text-red-500" role="alert">{{ registerErrorMessage }}</p>
       }
     </div>
     <!-- Botão de Cadastro -->
