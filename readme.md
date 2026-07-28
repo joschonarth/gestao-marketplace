@@ -1,82 +1,128 @@
-# 🚀 Desafio de lançamento do curso de Angular na Rocketseat
+<div align="center">
 
-### ⚠️ **Instruções Importantes**
+<img alt="gestao-marketplace" src="./web/public/logo.svg" />
 
-- A branch **`01-layout-completo`** deve ser utilizada por quem deseja **iniciar o desafio do zero**, acompanhando os conteúdos e evoluindo o projeto passo a passo.  
+# Gestão Marketplace
 
-- A branch **`main`** contém o projeto **finalizado**, de acordo com o que foi desenvolvido nos vídeos do desafio.  
+_Sistema de gestão de produtos com autenticação, listagem e cadastro de itens._
 
----
-
-### 📂 Descrição do Projeto
-
-Este projeto é uma simulação de um sistema de gestão de produtos que inclui as seguintes funcionalidades:
-
-* **Tela de Login**: Autenticação de usuários.
-* **Listagem de Produtos**: Exibição de produtos com opções de filtro por título e status.
-* **Tela de Criação de Produto**: Interface para adicionar novos produtos ao catálogo.
-
-O desafio é dividido em dois projetos, um frontend em Angular e um backend em Express, que estão localizados no mesmo repositório.
+<img src="https://img.shields.io/github/last-commit/joschonarth/gestao-marketplace?style=default&logo=git&logoColor=white&color=F24D0D&labelColor=27272a" alt="last-commit">
+<img src="https://img.shields.io/github/languages/top/joschonarth/gestao-marketplace?style=default&color=F24D0D&labelColor=27272a" alt="repo-top-language">
+<img src="https://img.shields.io/github/languages/count/joschonarth/gestao-marketplace?style=default&color=F24D0D&labelColor=27272a" alt="repo-language-count">
 
 ---
 
-### ▶️ Como Executar os Projetos
+📃 [Sobre](#-sobre)&nbsp;&nbsp;•&nbsp;&nbsp;
+🛠️ [Tecnologias](#️-tecnologias)&nbsp;&nbsp;•&nbsp;&nbsp;
+✨ [Funcionalidades](#-funcionalidades)&nbsp;&nbsp;•&nbsp;&nbsp;
+🚀 [Como rodar](#-como-rodar)&nbsp;&nbsp;
 
-Para rodar a aplicação, você deve iniciar tanto o servidor do backend quanto o frontend em terminais separados.
-
-#### Backend (Express)
-
-1.  Abra um terminal na pasta `backend-gestao-marketplace`.
-2.  Instale as dependências do projeto:
-    ```bash
-    npm install
-    ```
-3.  Execute o comando para iniciar o servidor:
-    ```bash
-    npm run dev
-    ```
-4.  👉 O servidor estará disponível em `http://localhost:3000`.
-
-#### Frontend (Angular)
-
-1.  Abra um terminal na pasta `frontend-gestao-marketplace`.
-2.  Instale as dependências do projeto:
-    ```bash
-    npm install
-    ```
-3.  Execute o comando para iniciar a aplicação:
-    ```bash
-    ng serve
-    ```
-4.  👉 A aplicação estará disponível em `http://localhost:4200/`.
+</div>
 
 ---
 
-### 🛠️ Instalações Necessárias
+## 📃 Sobre
 
-Certifique-se de que as seguintes ferramentas estão instaladas em seu ambiente para que os projetos funcionem corretamente:
-
-* **Node.js**: Versão 22.19.0 (LTS).  
-* **Angular CLI**: Versão 20.  
-* **Insomnia**: Última versão para testar os endpoints do backend.  
-* **Visual Studio Code (VS Code)**: Última versão recomendada para edição de código.  
+O **Gestão Marketplace** é uma simulação de um sistema de gestão de produtos, com **frontend em Angular** e **backend em Express**, organizados no mesmo repositório. A aplicação conta com telas de login e criação de conta para autenticação de usuários, listagem de produtos com filtros por título e status, e uma tela dedicada para o cadastro de novos produtos no catálogo.
 
 ---
 
-### 💡 Extensões recomendadas do VS Code
+## 🛠️ Tecnologias
 
-Para melhorar a produtividade durante o desenvolvimento, recomenda-se instalar as seguintes extensões no **Visual Studio Code**:
+### Frontend
 
-- **Angular Language Service** → Fornece autocompletar, dicas e suporte avançado ao desenvolvimento Angular.  
-- **Material Icon Theme** → Adiciona ícones visuais aos arquivos e pastas, facilitando a navegação no projeto.  
-- **Shades of Purple** → Tema moderno e vibrante para melhorar a experiência visual no editor.  
-- **Tailwind CSS IntelliSense** → Autocompletar e validação para classes do Tailwind CSS, tornando o uso mais ágil e confiável.  
+- 🅰️ **[Angular](https://angular.dev/)** — Framework para construção de aplicações web robustas e escaláveis.
+- 🟦 **[TypeScript](https://www.typescriptlang.org/)** — Tipagem estática e segurança em tempo de desenvolvimento.
+- 🎨 **[TailwindCSS](https://tailwindcss.com/)** — Framework CSS utility-first para estilização e responsividade.
+- 🔄 **[RxJS](https://rxjs.dev/)** — Programação reativa com observables para gerenciamento de estado e eventos.
+
+### Backend
+
+- 🟩 **[Node.js](https://nodejs.org/)** — Ambiente de execução JavaScript no servidor.
+- 🟦 **[TypeScript](https://www.typescriptlang.org/)** — Tipagem estática também no backend.
+- 🚂 **[Express](https://expressjs.com/)** — Framework para construção da API REST.
 
 ---
 
-### 📸 Recursos Adicionais
+## ✨ Funcionalidades
 
-* A pasta `imagens` na raiz do repositório contém imagens que podem ser usadas para teste ao criar um novo produto.
-* O arquivo `insomnia-backend.yaml`, localizado na pasta `backend-gestao-marketplace`, contém a coleção de endpoints que pode ser importada no Insomnia para facilitar os testes da API.
+- [x] 🔐 Tela de login com autenticação de usuários
+- [x] 👤 Tela de criação de conta
+- [x] 📦 Listagem de produtos cadastrados
+- [x] 🔍 Filtro de produtos por título e status
+- [x] ➕ Tela de criação de novos produtos
 
 ---
+
+## 🚀 Como rodar
+
+### 📋 Pré-requisitos
+
+- 🟩 [Node.js 22.19.0 (LTS)](https://nodejs.org/)
+- 🅰️ [Angular CLI 20](https://angular.dev/tools/cli)
+
+### 🔧 Instalação e Execução
+
+O projeto é dividido em duas pastas, `server` e `web`, que devem ser executadas em terminais separados.
+
+#### 🟩 Backend (Node.js)
+
+1. Acesse a pasta do backend:
+
+   ```bash
+   cd server
+   ```
+
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor:
+
+   ```bash
+   npm run dev
+   ```
+
+4. 👉 O servidor estará disponível em **[http://localhost:3000](http://localhost:3000)**.
+
+#### 🅰️ Frontend (Angular)
+
+1. Acesse a pasta do frontend:
+
+   ```bash
+   cd web
+   ```
+
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Inicie a aplicação:
+
+   ```bash
+   npm run start
+   ```
+
+4. 👉 A aplicação estará disponível em **[http://localhost:4200](http://localhost:4200)**.
+
+---
+
+## ⭐ Apoie este Projeto
+
+Se curtiu o projeto, deixe uma ⭐ aqui no GitHub — isso ajuda muito!
+
+---
+
+<div align="center">
+
+Feito com ♥ por **[João Otávio Schonarth](https://github.com/joschonarth)**
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/joschonarth)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/joschonarth)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:joschonarth@gmail.com)
+
+</div>
