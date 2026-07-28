@@ -97,7 +97,14 @@
         </div>
         <!-- Botão Salvar -->
         <div
-          class="flex flex-1 justify-center p-3 rounded-lg bg-[#F24D0D] cursor-pointer active:translate-y-2 duration-200 ease-in-out transition"
+          [class]="
+            ` flex flex-1 justify-center p-3 rounded-lg
+          ${
+            productForm.valid && productImageBase64
+              ? 'bg-[#F24D0D] cursor-pointer active:translate-y-2 duration-200 ease-in-out transition'
+              : 'bg-gray-500 cursor-default'
+          }`
+          "
           (click)="saveProduct()"
         >
           <span class="text-white text-sm">Salvar e publicar</span>
