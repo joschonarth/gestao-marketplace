@@ -4,6 +4,7 @@ export interface ILoginSuccessResponse {
     token: string;
     user: {
       id: number;
+      name: string;
       email: string;
     };
   };

@@ -1,5 +1,6 @@
 export interface User {
   id: number;
+  name: string;
   email: string;
   password: string;
 }
@@ -10,6 +11,7 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
+  name: string;
   email: string;
   password: string;
 }
@@ -18,6 +20,7 @@ export interface RegisterResponse {
   message: string;
   user: {
     id: number;
+    name: string;
     email: string;
   };
 }
@@ -26,12 +29,14 @@ export interface LoginResponse {
   token: string;
   user: {
     id: number;
+    name: string;
     email: string;
   };
 }
 
 export interface JWTPayload {
   userId: number;
+  name: string;
   email: string;
   iat?: number;
   exp?: number;
