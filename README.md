@@ -21,6 +21,10 @@ _Sistema de gestão de produtos com autenticação, listagem e cadastro de itens
 
 ---
 
+<img width="1366" height="768" alt="Login" src="https://github.com/user-attachments/assets/71ae9097-5072-4780-8914-f23451eb9d49" />
+
+---
+
 ## 📃 Sobre
 
 O **Gestão Marketplace** é uma simulação de um sistema de gestão de produtos, com **frontend em Angular** e **backend em Express**, organizados no mesmo repositório. A aplicação conta com telas de login e criação de conta para autenticação de usuários, listagem de produtos com filtros por título e status, e uma tela dedicada para o cadastro de novos produtos no catálogo.
