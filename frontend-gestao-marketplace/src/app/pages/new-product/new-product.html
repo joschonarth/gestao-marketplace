@@ -110,6 +110,10 @@
           <span class="text-white text-sm">Salvar e publicar</span>
         </div>
       </div>
+
+      @if (successMessage) {
+        <p class="font-bold text-green-500">{{ successMessage }}</p>
+      }
     </div>
   </div>
 </div>
