@@ -43,4 +43,11 @@ export class Products implements OnInit {
         (!status || product.status.toLowerCase().includes(status)),
     );
   }
+
+  clearFilter() {
+    this.filterForm.reset();
+    this.filterForm.get('status')?.setValue('');
+
+    this.filteredProducts = this.products;
+  }
 }
