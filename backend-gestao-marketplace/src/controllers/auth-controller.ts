@@ -1,20 +1,27 @@
-import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import fs from 'fs';
-import path from 'path';
-import { User, LoginRequest, LoginResponse, JWTPayload, RegisterRequest, RegisterResponse } from '../types';
+import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import fs from "fs";
+import path from "path";
+import {
+  User,
+  LoginRequest,
+  LoginResponse,
+  JWTPayload,
+  RegisterRequest,
+  RegisterResponse,
+} from "../types";
 
-const SECRET_KEY = 'SECRET_KEY';
-const USERS_FILE = path.join(__dirname, '../../users.json');
+const SECRET_KEY = "SECRET_KEY";
+const USERS_FILE = path.join(__dirname, "../../users.json");
 
 // Carregar usuários do arquivo JSON
 const loadUsers = (): User[] => {
   try {
-    const userData = fs.readFileSync(USERS_FILE, 'utf8');
+    const userData = fs.readFileSync(USERS_FILE, "utf8");
     return JSON.parse(userData) as User[];
   } catch (error) {
-    console.error('Erro ao carregar usuários:', error);
+    console.error("Erro ao carregar usuários:", error);
     return [];
   }
 };
@@ -22,16 +29,16 @@ const loadUsers = (): User[] => {
 // Salvar usuários no arquivo JSON
 const saveUsers = (users: User[]): void => {
   try {
-    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2), 'utf8');
+    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2), "utf8");
   } catch (error) {
-    console.error('Erro ao salvar usuários:', error);
+    console.error("Erro ao salvar usuários:", error);
   }
 };
 
 // Encontrar usuário por email
 const findUserByEmail = (email: string): User | undefined => {
   const users = loadUsers();
-  return users.find(user => user.email === email);
+  return users.find((user) => user.email === email);
 };
 
 export const login = async (req: Request, res: Response): Promise<void> => {
@@ -41,8 +48,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     // Validar campos obrigatórios
     if (!email || !password) {
       res.status(400).json({
-        error: 'Campos obrigatórios',
-        message: 'Email e senha são obrigatórios'
+        error: "Campos obrigatórios",
+        message: "Email e senha são obrigatórios",
       });
       return;
     }
@@ -51,8 +58,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       res.status(400).json({
-        error: 'Email inválido',
-        message: 'Forneça um email válido'
+        error: "Email inválido",
+        message: "Forneça um email válido",
       });
       return;
     }
@@ -61,8 +68,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const user = findUserByEmail(email);
     if (!user) {
       res.status(401).json({
-        error: 'Credenciais inválidas',
-        message: 'Email ou senha incorretos'
+        error: "Credenciais inválidas",
+        message: "Email ou senha incorretos",
       });
       return;
     }
@@ -71,8 +78,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       res.status(401).json({
-        error: 'Credenciais inválidas',
-        message: 'Email ou senha incorretos'
+        error: "Credenciais inválidas",
+        message: "Email ou senha incorretos",
       });
       return;
     }
@@ -80,11 +87,12 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     // Gerar token JWT
     const payload: JWTPayload = {
       userId: user.id,
-      email: user.email
+      name: user.name,
+      email: user.email,
     };
 
-    const token = jwt.sign(payload, SECRET_KEY, { 
-      expiresIn: '24h' 
+    const token = jwt.sign(payload, SECRET_KEY, {
+      expiresIn: "24h",
     });
 
     // Resposta de sucesso
@@ -92,43 +100,52 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       token,
       user: {
         id: user.id,
-        email: user.email
-      }
+        name: user.name,
+        email: user.email,
+      },
     };
 
     res.status(200).json({
-      message: 'Login realizado com sucesso',
-      data: response
+      message: "Login realizado com sucesso",
+      data: response,
     });
-
   } catch (error) {
-    console.error('Erro no login:', error);
+    console.error("Erro no login:", error);
     res.status(500).json({
-      error: 'Erro interno do servidor',
-      message: 'Erro ao processar login'
+      error: "Erro interno do servidor",
+      message: "Erro ao processar login",
     });
   }
 };
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { email, password }: RegisterRequest = req.body;
+    const { name, email, password }: RegisterRequest = req.body;
 
     // Validar campos obrigatórios
-    if (!email || !password) {
+    if (!name || !email || !password) {
       res.status(400).json({
-        error: 'Campos obrigatórios',
-        message: 'Email e senha são obrigatórios'
+        error: "Campos obrigatórios",
+        message: "Nome, email e senha são obrigatórios",
       });
       return;
     }
-    
+
+    // Validar nome
+    if (name.trim().length < 2) {
+      res.status(400).json({
+        error: "Nome inválido",
+        message: "O nome deve ter pelo menos 2 caracteres",
+      });
+      return;
+    }
+
     // Validar formato de email básico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       res.status(400).json({
-        error: 'Email inválido',
-        message: 'Forneça um email válido'
+        error: "Email inválido",
+        message: "Forneça um email válido",
       });
       return;
     }
@@ -138,8 +155,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     // Verificar se o email já existe
     if (findUserByEmail(email)) {
       res.status(409).json({
-        error: 'Conflito',
-        message: 'Este email já está cadastrado'
+        error: "Conflito",
+        message: "Este email já está cadastrado",
       });
       return;
     }
@@ -149,35 +166,35 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Gerar novo ID
-    const newUserId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+    const newUserId =
+      users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
 
     // Criar novo usuário
     const newUser: User = {
       id: newUserId,
+      name: name.trim(),
       email,
-      password: hashedPassword
+      password: hashedPassword,
     };
 
-    // Adicionar novo usuário à lista e salvar
     users.push(newUser);
     saveUsers(users);
 
-    // Resposta de sucesso
     const response: RegisterResponse = {
-      message: 'Usuário cadastrado com sucesso',
+      message: "Usuário cadastrado com sucesso",
       user: {
         id: newUser.id,
-        email: newUser.email
-      }
+        name: newUser.name,
+        email: newUser.email,
+      },
     };
 
     res.status(201).json(response);
-
   } catch (error) {
-    console.error('Erro no cadastro:', error);
+    console.error("Erro no cadastro:", error);
     res.status(500).json({
-      error: 'Erro interno do servidor',
-      message: 'Erro ao processar cadastro'
+      error: "Erro interno do servidor",
+      message: "Erro ao processar cadastro",
     });
   }
 };
