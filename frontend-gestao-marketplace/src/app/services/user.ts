@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { IAuthSuccessResponse } from '../interfaces/auth-success-response';
 import { Observable } from 'rxjs';
 import { ILoginSuccessResponse } from '../interfaces/login-success-response';
+import { IRegisterSuccessResponse } from '../interfaces/register-success-response';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,19 @@ export class UserService {
 
     return this._httpClient.post<ILoginSuccessResponse>(
       'http://localhost:3000/api/users/login',
+      body,
+    );
+  }
+
+  register(name: string, email: string, password: string): Observable<IRegisterSuccessResponse> {
+    const body = {
+      name,
+      email,
+      password,
+    };
+
+    return this._httpClient.post<IRegisterSuccessResponse>(
+      'http://localhost:3000/api/users/register',
       body,
     );
   }
